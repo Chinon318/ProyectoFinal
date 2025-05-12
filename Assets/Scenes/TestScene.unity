@@ -8159,6 +8159,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 2.5
   isMoving: 0
+--- !u!114 &1360701394
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1360701387}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f5a69b4a33309d4884f4190c49519dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerStats: {fileID: 11400000, guid: c503869deca7f244da8ce91ee7c20c4b, type: 2}
+  hp: 0
+  dmg: 0
+  shield: 0
 --- !u!1001 &1373476895
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8265,6 +8281,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 9046649981217760085, guid: 076e70130deb941259c717e22f40be8d, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1360701391}
+    - targetCorrespondingSourceObject: {fileID: 9046649981217760085, guid: 076e70130deb941259c717e22f40be8d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1360701394}
   m_SourcePrefab: {fileID: 100100000, guid: 076e70130deb941259c717e22f40be8d, type: 3}
 --- !u!1 &1690951008
 GameObject:
