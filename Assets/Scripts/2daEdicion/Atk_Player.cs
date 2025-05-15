@@ -2,36 +2,26 @@ using UnityEngine;
 
 public class Atk_Player : MonoBehaviour
 {
-    private InfoJugador info;
+    [SerializeField]private Animator anim;
 
-    [Header("Config bullet")]
-    public GameObject bulletPrefab;
-    public Transform spawnBullet;
-
-    private float bulletSpeed;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        anim = GetComponentInChildren<Animator>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        Disparo();
+        Ataque();
     }
 
-
-    private void Disparo()
+    private void Ataque()
     {
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
-            GameObject bullet = Instantiate(bulletPrefab, spawnBullet);
-            Rigidbody2D bulletRB = bullet.GetComponent<Rigidbody2D>();
-
-            bulletRB.AddForce( Vector2.right, ForceMode2D.Impulse );
-
+            anim.SetTrigger("2_Attack");
         }
     }
 }

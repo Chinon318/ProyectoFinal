@@ -1,12 +1,13 @@
+using System;
 using UnityEngine;
 
 public class InfoJugador : MonoBehaviour
 {
     public Stats playerStats;
 
-    [SerializeField]private float hp;
-    [SerializeField]private float dmg;
-    [SerializeField]private float shield;
+    public float hp;
+    public float dmg;
+    public float shield;
 
     void Awake()
     {
@@ -21,10 +22,12 @@ public class InfoJugador : MonoBehaviour
         if (shield > 0)
         {
             shield -= cantidad;
+            Debug.Log("Daño recibido");
         }
         else
         {
             hp -= cantidad;
+            Debug.Log("Daño recibido");
         }
 
 
