@@ -6,7 +6,8 @@ public class EnemyAI : MonoBehaviour
 
     private enum State
     {
-        Roaming
+        Roaming,
+        Following,
     }
 
     private State state;
@@ -34,9 +35,16 @@ public class EnemyAI : MonoBehaviour
         }
     }
 
+    /*IEnumerator FollowingState()
+    {
+        while (state == State.Following)
+        {
+            
+        }
+    }*/
 
     private Vector2 GetRoamingPosition()
     {
-        return new Vector2(Random.Range(-1f,1f), Random.Range(-1f, 1f)).normalized;
+        return new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f)).normalized;
     }
 }
