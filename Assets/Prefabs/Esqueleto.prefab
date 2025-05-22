@@ -4872,6 +4872,7 @@ MonoBehaviour:
   hp: 0
   dmg: 0
   shield: 0
+  isDead: 0
 --- !u!114 &4803758203217661229
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4914,6 +4915,7 @@ GameObject:
   - component: {fileID: 4622681975859486526}
   - component: {fileID: 5151305632985439848}
   - component: {fileID: 6325712846721665785}
+  - component: {fileID: 5224472635326645250}
   m_Layer: 0
   m_Name: R_Weapon
   m_TagString: Untagged
@@ -5021,7 +5023,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -5037,3 +5039,16 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.20617625, y: 0.6094877}
   m_EdgeRadius: 0
+--- !u!114 &5224472635326645250
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9217750548964861559}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2890a36a00e97ce4a98c5bb6891e5682, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  info: {fileID: 0}

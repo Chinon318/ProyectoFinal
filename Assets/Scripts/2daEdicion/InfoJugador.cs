@@ -14,6 +14,9 @@ public class InfoJugador : MonoBehaviour
 
     public bool isDead;
 
+
+    public bool haskey;
+
     void Awake()
     {
         animator = GetComponentInChildren<Animator>();
@@ -28,17 +31,23 @@ public class InfoJugador : MonoBehaviour
     {
         if (shield > 0)
         {
-            shield -= cantidad;
-            Debug.Log("Daño recibido");
+            if (cantidad <= shield)
+            {
+                shield -= cantidad;
+            }
+            else
+            {
+                float sobra = cantidad - shield;
+                shield = 0;
+                hp -= sobra;
+            }
         }
         else
         {
             hp -= cantidad;
-            Debug.Log("Daño recibido");
         }
 
-
-        if (hp <= 0)
+        if (hp <= 0 && !isDead)
         {
             isDead = true;
             StartCoroutine(Morir());
@@ -54,6 +63,18 @@ public class InfoJugador : MonoBehaviour
     public void RecibirBoostHp(float cantidad)
     {
         hp += hp * (cantidad / 100);
+    }
+
+    public void RecibirBoostShield(float cantidad)
+    {
+        if (shield > 0)
+        {
+            shield += shield * (cantidad / 100);
+        }
+        else
+        {
+            shield += cantidad;
+        }
     }
 
     IEnumerator Morir()

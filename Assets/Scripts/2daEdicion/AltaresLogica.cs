@@ -1,15 +1,24 @@
+using System.Collections;
 using UnityEngine;
 
 public class AltaresLogica : MonoBehaviour
 {
     private ParticleSystem altarParticleSystem;
 
-    private int index;
+    [SerializeField] private int index;
+
+    [SerializeField] private float boostPorcentaje = 5f;
+    [SerializeField] private float tiempoDeActivacion = 10f;
+
+    [SerializeField]private GameObject panelBuffDmg;
+
+    private bool isActive;
 
     private enum Pociones
     {
         bustDmg,
-        bustHp
+        bustHp,
+        bustShield
     }
 
     void Awake()
@@ -23,6 +32,7 @@ public class AltaresLogica : MonoBehaviour
         {
             altarParticleSystem.Stop();
             altarParticleSystem.Clear();
+            isActive = false;
 
             InfoJugador info = collision.GetComponent<InfoJugador>();
             if (info != null)
@@ -31,13 +41,37 @@ public class AltaresLogica : MonoBehaviour
                 switch (pocion)
                 {
                     case Pociones.bustDmg:
-                        info.RecibirBoostDmg(5f);
+                        info.RecibirBoostDmg(boostPorcentaje);
+                        StartCoroutine(PanelRutina(1.5f));
                         break;
                     case Pociones.bustHp:
-                        info.RecibirBoostHp(5f);
+                        info.RecibirBoostHp(boostPorcentaje);
+                        break;
+                    case Pociones.bustShield:
+                        info.RecibirBoostShield(boostPorcentaje);
                         break;
                 }
             }
+
+            if (!isActive)
+            {
+                StartCoroutine(ActivarAltar());
+            }
         }
+    }
+
+
+    IEnumerator ActivarAltar()
+    {
+        yield return new WaitForSeconds(tiempoDeActivacion);
+        isActive = true;
+        altarParticleSystem.Play();
+    }
+
+    IEnumerator PanelRutina(float tiempo)
+    {
+        panelBuffDmg.SetActive(true);
+        yield return new WaitForSeconds(tiempo);
+        panelBuffDmg.SetActive(false);
     }
 }

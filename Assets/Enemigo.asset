@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b116a72c6882362478aac519561a8844, type: 3}
   m_Name: Enemigo
   m_EditorClassIdentifier: 
-  hp: 20
-  dmg: 2
+  hp: 25
+  dmg: 3
   shield: 3

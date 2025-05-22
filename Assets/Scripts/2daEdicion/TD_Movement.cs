@@ -19,6 +19,7 @@ public class TD_Movement : MonoBehaviour
     {
         anim = GetComponentInChildren<Animator>();
         rb = GetComponent<Rigidbody2D>();
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     void FixedUpdate()
