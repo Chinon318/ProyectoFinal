@@ -6,33 +6,55 @@ public class EnemyPF : MonoBehaviour
 
     [SerializeField] private Rigidbody2D rb;
     private Vector2 movePos;
+    private Vector2 targetPos;
+    private bool isMoving = false;
+    private float stoppingDistance = 0.05f;
 
+    private InfoJugador playerInfo;
 
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        playerInfo = GetComponent<InfoJugador>();
     }
 
     void FixedUpdate()
     {
-        rb.MovePosition(rb.position + movePos * (speed * Time.fixedDeltaTime));
+        if (isMoving)
+        {
+            Vector2 currentPos = rb.position;
+
+            if (Vector2.Distance(currentPos, targetPos) <= stoppingDistance)
+            {
+                isMoving = false;
+                movePos = Vector2.zero;
+            }
+            else
+            {
+                movePos = (targetPos - currentPos).normalized;
+                rb.MovePosition(currentPos + movePos * (speed * Time.fixedDeltaTime));
+            }
+
+            // Flip del sprite
+            if (movePos.x > 0.1f)
+                transform.localScale = new Vector3(-1, 1, 1);
+            else if (movePos.x < -0.1f)
+                transform.localScale = new Vector3(1, 1, 1);
+        }
     }
 
-    public void MoveTo(Vector2 targetPos)
+    public void MoveTo(Vector2 target)
     {
-        movePos = (targetPos - rb.position).normalized;
+        if (!playerInfo.isDead)
+        {
+            targetPos = target;
+            isMoving = true;
+        }
     }
 
-    public void DistanceTo(Vector2 targetPos)
+    public bool IsMoving()
     {
-        float distance = Vector2.Distance(rb.position, targetPos);
-        if (distance < 0.1f)
-        {
-            movePos = Vector2.zero;
-        }
-        else
-        {
-            movePos = (targetPos - rb.position).normalized;
-        }
+        return isMoving;
     }
+
 }

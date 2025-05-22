@@ -6,6 +6,8 @@ public class TD_Movement : MonoBehaviour
 
     [SerializeField] private float speed;
 
+    public Transform spawnBullet;
+
     //Animator
     private Animator anim;
 
@@ -30,9 +32,11 @@ public class TD_Movement : MonoBehaviour
         float horMovement = Input.GetAxis("Horizontal");
         float verMovement = Input.GetAxis("Vertical");
 
+
+
         if (horMovement != 0 || verMovement != 0)
         {
-            Vector2 direccion = new Vector2(horMovement,verMovement).normalized;
+            Vector2 direccion = new Vector2(horMovement, verMovement).normalized;
 
             rb.MovePosition(rb.position + direccion * (speed * Time.fixedDeltaTime));
 
@@ -48,12 +52,20 @@ public class TD_Movement : MonoBehaviour
 
         if (horMovement < -0.1f)
         {
-            transform.localScale = new Vector3(1,1,1);
+            transform.localScale = new Vector3(1, 1, 1);
+            
         }
         else if (horMovement > 0.1f)
         {
-            transform.localScale = new Vector3(-1,1,1);
+            transform.localScale = new Vector3(-1, 1, 1);
+            
         }
+        
+        if (Mathf.Abs(horMovement) < 0.1f && Mathf.Abs(verMovement) < 0.1f)
+        {
+            rb.linearVelocity = Vector2.zero; // Por si algo externo lo mueve
+        }
+
     }
 
 }
